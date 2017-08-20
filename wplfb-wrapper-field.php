@@ -10,19 +10,22 @@
  */
 
 
-if (class_exists("WP_Libre_Formbuilder")) {
-  $wplfb = WP_Libre_Formbuilder::instance();
-  $wplfb->addField([
-    "key" => "wrapper",
-    "name" => "Wrapper",
-    "html" => "<div class='wrapper'><p>Noot</p></div>",
-    "children" => true,
-  ]);
+add_action("plugins_loaded", function() {
+  if (class_exists("WP_Libre_Formbuilder")) {
+    $wplfb = WP_Libre_Formbuilder::instance();
+    $wplfb->addField([
+      "key" => "wrapper",
+      "name" => "Wrapper",
+      "html" => "<div class='wrapper'><p>Noot</p></div>",
+      "takesChildren" => true,
+    ]);
 
-  $wplfb->addField([
-    "key" => "text",
-    "name" => "Text input",
-    "html" => "<input type='text' name='test' placeholder='Test'>",
-    "children" => false,
-  ]);
-}
+    $wplfb->addField([
+      "key" => "text",
+      "name" => "Text input",
+      "html" => "<input type='text' name='test' placeholder='Test'>",
+      "takesChildren" => false,
+    ]);
+  }
+});
+
